@@ -2,6 +2,8 @@
 
 This Python-based project leverages the Gemini Large Language Model (LLM) to extract structured data from PDF documents efficiently.
 
+This is just a demonstration only of how to use LLM for structured data extraction.
+
 ## Overview
 
 The tool converts PDFs into images and processes each page individually, parsing content to extract user-defined properties and structured data. Results are conveniently delivered in JSON or dictionary formats, allowing seamless integration with other systems and workflows.
@@ -33,6 +35,8 @@ Clone the repository and install dependencies:
 ```
 git clone <repository-url>
 cd <repository-name>
+python -m venv env
+.\env\Scripts\activate
 pip install -r requirements.txt
 ```
 
@@ -41,23 +45,31 @@ pip install -r requirements.txt
 Update your Gemini API credentials in the configuration file:
 
 ```
-# config.py
-API_KEY = 'your-gemini-api-key'
+genai.configure(api_key="<Gemini APi Key>")
+```
+Create Your output Format JSON: I am using my electricity bill and extracting information from it 
+
+```
+config  =  """{
+"BILL DATE":"<bill date>",
+"BILL NUMBER":<bill number>,
+"Round Sum Payable with this bill":<round sum payable>,
+"Your security deposit (SD) with us":<security deposit with us>,
+"Your unpaid security deposit (SD)":<unpaid security deposit>
+}""
+```
+
+Update your PDF file path:
+
+```
+pdf_path  =  "<path to your PDF>.pdf"
 ```
 
 Run the parser script:
 
 ```
-python parse_documents.py --pdf path/to/your/document.pdf
+python app.py 
 ```
-
-## Customizing Extracted Data
-
-You can define which properties or items should be extracted by modifying the extraction template JSON provided within the project. Adjust the schema to match your requirements.
-
-## Contribution
-
-This project is open for collaboration and contributions. Feel free to submit pull requests or issues for feature enhancements and bug fixes.
 
 ## License
 
